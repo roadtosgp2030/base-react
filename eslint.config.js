@@ -5,6 +5,7 @@ import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import globals from 'globals'
+import importPlugin from 'eslint-plugin-import'
 
 export default [
   { ignores: ['dist'] },
@@ -27,7 +28,8 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      prettier
+      prettier,
+      import: importPlugin
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -37,7 +39,24 @@ export default [
       'prettier/prettier': ['warn', { endOfLine: 'auto' }],
       ...prettierConfig.rules,
       'react/jsx-no-target-blank': 'off',
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'import/order': [
+        'warn',
+        {
+          groups: [
+            'builtin', // Node.js built-ins (fs, path, etc.)
+            'external', // External packages (React, lodash, etc.)
+            'internal', // Absolute imports (from src/, @/)
+            ['parent', 'sibling', 'index'], // Relative imports
+            'object' // Imports of modules as objects
+          ],
+          'newlines-between': 'always', // Enforce a blank line between groups
+          alphabetize: {
+            order: 'ignore', // Do not sort inside groups
+            caseInsensitive: true
+          }
+        }
+      ]
     }
   }
 ]

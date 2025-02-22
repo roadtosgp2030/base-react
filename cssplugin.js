@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs'
-import { parse } from 'postcss'
+
 import { objectify } from 'postcss-js'
+import { parse } from 'postcss'
 
 /**
  * CSS as plugin
