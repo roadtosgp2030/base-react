@@ -4,7 +4,6 @@ import prettier from 'eslint-plugin-prettier'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import globals from 'globals'
 
 export default [
@@ -28,8 +27,7 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      prettier,
-      'simple-import-sort': simpleImportSort
+      prettier
     },
     rules: {
       ...js.configs.recommended.rules,
