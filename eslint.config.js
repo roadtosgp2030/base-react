@@ -23,7 +23,7 @@ export default [
         sourceType: 'module'
       }
     },
-    settings: { react: { version: '18.3' } },
+    settings: { react: { version: 'detect' } },
     plugins: {
       react,
       'react-hooks': reactHooks,
@@ -36,7 +36,7 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
-      'react/jsx-no-target-blank': 'off',
+      'react/jsx-no-target-blank': 'warn', // WARNING: need to add rel="noopener noreferrer" for <a> with target="_blank"
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       'prettier/prettier': ['warn', { endOfLine: 'auto' }],
