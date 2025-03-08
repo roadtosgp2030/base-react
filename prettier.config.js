@@ -7,7 +7,7 @@ export default {
   tabWidth: 2,
   useTabs: false,
   singleQuote: true,
-  printWidth: 80,
+  printWidth: 100,
   jsxSingleQuote: true,
   plugins: ['prettier-plugin-tailwindcss'] // Automatically sorts Tailwind CSS classes in a consistent order
 }

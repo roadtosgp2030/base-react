@@ -38,7 +38,7 @@ Or with yarn:
 yarn install
 ```
 
-## 🛠 Development
+### 3️⃣ Development
 
 To start the development server, run:
 

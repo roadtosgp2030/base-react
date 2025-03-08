@@ -1,11 +1,11 @@
 import js from '@eslint/js'
 import prettierConfig from 'eslint-config-prettier'
+import importPlugin from 'eslint-plugin-import'
 import prettier from 'eslint-plugin-prettier'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import globals from 'globals'
-import importPlugin from 'eslint-plugin-import'
 
 export default [
   { ignores: ['dist'] },
@@ -42,7 +42,7 @@ export default [
       'prettier/prettier': ['warn', { endOfLine: 'auto' }],
       ...prettierConfig.rules,
 
-      'no-console': 'warn',
+      'no-debugger': 0,
 
       'import/order': [
         'warn',
@@ -56,7 +56,7 @@ export default [
           ],
           'newlines-between': 'always', // Enforce a blank line between groups
           alphabetize: {
-            order: 'ignore', // Do not sort inside groups
+            order: 'asc', // Sort imports within groups in ascending order
             caseInsensitive: true
           }
         }
