@@ -36,27 +36,39 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
-      'react/jsx-no-target-blank': 'warn', // WARNING: need to add rel="noopener noreferrer" for <a> with target="_blank"
+      'react/jsx-no-target-blank': 'warn',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       'prettier/prettier': ['warn', { endOfLine: 'auto' }],
       ...prettierConfig.rules,
 
-      'no-debugger': 0,
+      'no-console': 'warn',
+      'no-lonely-if': 'warn',
+      'no-trailing-spaces': 'warn',
+      'no-multi-spaces': 'warn',
+      'no-multiple-empty-lines': ['warn', { max: 1, maxEOF: 0, maxBOF: 0 }],
+      'no-irregular-whitespace': ['warn', { skipComments: true, skipStrings: true }],
+      'space-before-blocks': ['warn', 'always'],
+      'object-curly-spacing': ['warn', 'always'],
+      indent: ['warn', 2, { SwitchCase: 1 }],
+      semi: ['warn', 'never'],
+      quotes: ['warn', 'single'],
+      'array-bracket-spacing': 'warn',
+      'linebreak-style': 'off',
+      'no-unexpected-multiline': 'warn',
+      'keyword-spacing': 'warn',
+      'comma-dangle': 'warn',
+      'comma-spacing': 'warn',
+      'arrow-spacing': 'warn',
+      'no-useless-escape': 'warn',
 
       'import/order': [
         'warn',
         {
-          groups: [
-            'builtin', // Node.js built-ins (fs, path, etc.)
-            'external', // External packages (React, lodash, etc.)
-            'internal', // Absolute imports (from src/, @/)
-            ['parent', 'sibling', 'index'], // Relative imports
-            'object' // Imports of modules as objects
-          ],
-          'newlines-between': 'always', // Enforce a blank line between groups
+          groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'object'],
+          'newlines-between': 'always',
           alphabetize: {
-            order: 'asc', // Sort imports within groups in ascending order
+            order: 'asc',
             caseInsensitive: true
           }
         }

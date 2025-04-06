@@ -9,6 +9,12 @@ import viteCompression from 'vite-plugin-compression'
 // https://vite.dev/config/
 export default defineConfig({
   base: '/',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '/src')
+    }
+  },
+
   plugins: [
     react(),
     tailwindcss(),
@@ -25,11 +31,7 @@ export default defineConfig({
       brotliSize: true
     })
   ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, '/src')
-    }
-  },
+
   build: {
     target: 'es2015',
     outDir: 'dist',
@@ -44,5 +46,15 @@ export default defineConfig({
         }
       }
     }
+  },
+
+  server: {
+    port: 3000,
+    open: true
+  },
+
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom'],
+    exclude: []
   }
 })

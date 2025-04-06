@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --fix",
     "preview": "vite preview",
     "lint-staged": "lint-staged",
     "prepare": "husky"
@@ -41,7 +40,8 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --fix"
+      "eslint --fix",
+      "eslint --max-warnings=0"
     ]
   }
 }

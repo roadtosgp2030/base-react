@@ -9,5 +9,5 @@ export default {
   singleQuote: true,
   printWidth: 100,
   jsxSingleQuote: true,
-  plugins: ['prettier-plugin-tailwindcss'] // Automatically sorts Tailwind CSS classes in a consistent order
+  plugins: ['prettier-plugin-tailwindcss']
 }
