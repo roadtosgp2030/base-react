@@ -40,6 +40,14 @@ jobs:
 
           CHANGED_FILES=$(git diff --name-only "$BASE_REF" HEAD -- '*.js' '*.ts' '*.tsx' '*.jsx')
 
+          # Filter out deleted files
+          EXISTING_FILES=""
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              EXISTING_FILES="$EXISTING_FILES $file"
+            fi
+          done
+
           if [ -n "$CHANGED_FILES" ]; then
             echo "Changed files:"
             echo "$CHANGED_FILES"
