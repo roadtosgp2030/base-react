@@ -1,5 +1,5 @@
 const Comp = () => {
-  return <div>Compo123</div>
+  return <div>Compo12</div>
 }
 
 export default Comp
