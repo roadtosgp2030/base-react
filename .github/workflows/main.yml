@@ -4,23 +4,45 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint-code:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed to compare commits properly
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install deps
+
+      - name: Install dependencies
         run: npm install
-      - name: Lint changed files
+
+      - name: Lint changed files (PR or Push)
         run: |
-          git fetch origin main
-          CHANGED_FILES=$(git diff --name-only origin/main...HEAD -- '*.js' '*.ts' '*.tsx' '*.jsx')
+          echo "Event: $GITHUB_EVENT_NAME"
+
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            echo "Detected Pull Request — comparing with base branch"
+            git fetch origin ${{ github.base_ref }}
+            BASE_REF="origin/${{ github.base_ref }}"
+          else
+            echo "Detected Direct Push — comparing with previous commit"
+            BASE_REF="HEAD^"
+          fi
+
+          CHANGED_FILES=$(git diff --name-only "$BASE_REF" HEAD -- '*.js' '*.ts' '*.tsx' '*.jsx')
+
           if [ -n "$CHANGED_FILES" ]; then
+            echo "Changed files:"
+            echo "$CHANGED_FILES"
             npx eslint $CHANGED_FILES
           else
             echo "No JS/TS files changed."
