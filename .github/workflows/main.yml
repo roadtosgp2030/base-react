@@ -34,8 +34,9 @@ jobs:
             git fetch origin ${{ github.base_ref }}
             BASE_REF="origin/${{ github.base_ref }}"
           else
-            echo "Detected Direct Push — comparing with previous commit"
-            BASE_REF="HEAD^"
+            echo "Detected Direct Push — comparing with remote main"
+            git fetch origin main
+            BASE_REF="origin/main"
           fi
 
           echo "Comparing changes from $BASE_REF to HEAD"
